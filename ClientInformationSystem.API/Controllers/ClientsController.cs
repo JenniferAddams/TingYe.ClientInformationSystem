@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClientInformationSystem.Core.Entities;
 using ClientInformationSystem.Core.ServiceInterface;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,5 +30,15 @@ namespace ClientInformationSystem.API.Controllers
             var client = await _clientService.GetALLClients();
             return Ok(client);
         }
+
+        [HttpPost]
+        [Route("Add")]
+        //http://localhost:2283/api/clients/add
+        public async Task<IActionResult> AddClient([FromBody]Clients clients)
+        {
+            var createdUser = await _clientService.AddClients(clients);
+            return Ok(createdUser);
+        }
+
     }
 }

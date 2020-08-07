@@ -21,7 +21,28 @@ namespace ClientInformationSystem.Infrastructure.Services
         //Implment interface
         public async Task<Clients> AddClients(Clients clients)
         {
-            return await _clientRepository.AddAsync(clients);
+
+            var client = new Clients
+            {
+                Id = clients.Id,
+                Name = clients.Name,
+                Email = clients.Email,
+                Phones = clients.Phones,
+                Address = clients.Address,
+                AddedOn = clients.AddedOn
+
+            };
+            var createdUser = await _clientRepository.AddAsync(client);
+            var response= new Clients
+            {
+                Id = createdUser.Id,
+                Name = createdUser.Name,
+                Email = createdUser.Email,
+                Phones = createdUser.Phones,
+                Address = createdUser.Address,
+                AddedOn = createdUser.AddedOn,
+            };
+            return response;
         }
 
         public async Task<IEnumerable<Clients>> GetALLClients()

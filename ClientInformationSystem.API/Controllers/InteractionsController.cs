@@ -38,5 +38,6 @@ namespace ClientInformationSystem.API.Controllers
             var interactions = await _interactionService.GetByClientId(ClientId);
             return Ok(interactions);
         }
+
     }
 }
